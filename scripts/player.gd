@@ -11,7 +11,8 @@ var _is_selected = false;
 
 
 @export var MAX_FIRE_RANGE = 360;
-@export var MIN_FIRE_RANGE = 50;  
+@export var MIN_FIRE_RANGE = 0; 
+@export var projectile: Node2D=null;;
 func _ready():
 	pass
 func _draw():
@@ -21,9 +22,9 @@ func _draw():
 		#draw_circle(Vector2(0,0), MAX_FIRE_RANGE,)
 		var points = 50;
 		if MAX_FIRE_RANGE:
-			draw_arc(Vector2(0,0), MAX_FIRE_RANGE/2, 0, TAU, points, Color(1,0,0))
+			draw_arc(Vector2(0,0), MAX_FIRE_RANGE, 0, TAU, points, Color(1,0,0))
 		if MIN_FIRE_RANGE:
-			draw_arc(Vector2(0,0), MIN_FIRE_RANGE/2, 0, TAU, points, Color(1,0,0))
+			draw_arc(Vector2(0,0), MIN_FIRE_RANGE, 0, TAU, points, Color(1,0,0))
 
 func select():
 	_is_selected=true;
@@ -60,6 +61,9 @@ func update_turret(delta):
 		# Check if the turret is close enough to the target angle, and remove the attack from the list
 		if abs(angle_difference(turret.rotation, target_angle)) < 0.1:
 			players_attacks.remove_at(0)
+			
+			# create the projectile and fire it
+			
 
 func _physics_process(delta):
 	update_position(delta);

@@ -8,7 +8,7 @@ const SELECT_RADIUS = 75;
 func _ready():
 	#selectedPlayer = get_node("player");
 	players.append(get_node("player1"));
-	#players.append(get_node("player2"));
+	players.append(get_node("player2"));
 	pass # Replace with function body.
 
 func set_selected_player(idx):
@@ -22,7 +22,9 @@ func _process(_delta):
 	var mouse_pos = get_local_mouse_position()
 	if(Input.is_action_just_pressed("goto_click")):
 		var just_selected = false;
+		#print('looking for ', mouse_pos);
 		for i in players.size():
+			#print(' in ', players[i].position)
 			var player = players[i];
 			if (player.position.distance_to(mouse_pos) < SELECT_RADIUS):
 				#selectedPlayer = player;
